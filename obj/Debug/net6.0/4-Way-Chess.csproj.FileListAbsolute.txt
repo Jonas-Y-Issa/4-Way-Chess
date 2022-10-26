@@ -11,13 +11,11 @@ C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\n
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\BackgroundTest.xnb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\BestBoard.xnb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\Bishop.xnb
-C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\Board - Copy.xnb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\Board.xnb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\Chess_symbols.xnb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\cog.xnb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\Cog2.xnb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\cursor.xnb
-C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\Desk.xnb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\Hand.xnb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\Handl.xnb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\Head.xnb
@@ -39,7 +37,6 @@ C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\n
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\Queen.xnb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\Rook.xnb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\Rookd.xnb
-C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\RookTst1.xnb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\score.xnb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\score2 - Copy.xnb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\score2.xnb
@@ -47,7 +44,6 @@ C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\n
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\Settings.xnb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\SpriteFont1.xnb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\Square.xnb
-C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\tBoard.xnb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\testsquare.xnb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\Text.xnb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\Wallpaper.xnb
