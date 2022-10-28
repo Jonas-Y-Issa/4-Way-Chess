@@ -36,6 +36,7 @@ namespace _4_Way_Chess
         MenuBase Cred = new MenuBase("Credits");
         MenuBase Qu = new MenuBase("Queue");
         MenuBase Active;
+        MenuBase PreviousActive;
 
         LoadScreen loadScrn;
 
@@ -216,7 +217,7 @@ namespace _4_Way_Chess
             Menu = new StartMenu(Content);
             Priv = new MenuBase(Content, "Private", new MenuBase[] {}, new string[] { "Host", "Join", "Back" });
             Opt = new MenuBase(Content, "Options", new MenuBase[] {}, new string[] { "1", "2", "3", "Back" });
-            Cred = new MenuBase(Content, "Credits", new MenuBase[] {}, new string[] { "Game by ", "Younes Issa", "", "", "", "", "", "", "", "Back" });
+            Cred = new MenuBase(Content, "Credits", new MenuBase[] {}, new string[] { "Game by ", "Younes Issa", "", "", "", "", "", "Back" });
             LN = new MenuBase(Content, "LAN", new MenuBase[] {}, new string[] { "Host", "Join", "", "Back" });
             Qu = new MenuBase(Content, "Que",new MenuBase[] { }, new string[] { });
             MOptions = new MenuBase(Content, "Main Menu", new MenuBase[] { Priv, LN, Opt, Cred }, new string[] { "Quit" });
@@ -461,16 +462,21 @@ namespace _4_Way_Chess
 
 
             Resolution.thisT = true;
-
             #endregion
+
             Menu.Update(gameTime);
             switch (menuEnum)
             {
                 case MenuState.Menu:
+                    if (Active.hIndex > -1) {
+                        if (Click()
+                            && Active.menuOpt[Active.hIndex].Contains(Game1.mousePoint)
+                            && Active.hIndex < Active.Menus.Length)
+                        {
 
-                    if (Click() && MOptions.menuOpt[MOptions.hIndex].Contains(Game1.mousePoint) && MOptions.hIndex < MOptions.Menus.Length)
-                    {
-                        Active = MOptions.Menus[MOptions.hIndex];
+                            PreviousActive = Active;
+                            Active = MOptions.Menus[MOptions.hIndex];
+                        }
                     }
                     Active.Update(gameTime);
 
@@ -577,12 +583,7 @@ namespace _4_Way_Chess
 
             #endregion
 
-            #region HuD
-
-            //VersionPosition = new Vector2(880, 730);
             VersionPosition = new Vector2(15, Game1.testH * Resolution.ratio - 40);
-
-            #endregion
 
             #region Pause Game
 
@@ -608,13 +609,21 @@ namespace _4_Way_Chess
 
             MouseButtonReset();
 
-
-
             if (keyState.IsKeyDown(Keys.Escape) 
                 || GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed 
-                || (Click() && MOptions.menuOpt[MOptions.hIndex].Contains(Game1.mousePoint) && MOptions.text[MOptions.hIndex] == "Quit"))
-            { this.Exit(); }
-
+                || 
+                (Click() && Active.hIndex > -1
+                && Active.menuOpt[Active.hIndex].Contains(Game1.mousePoint)))
+            {
+                if (Active.text[Active.hIndex] == "Back")
+                {
+                    Active = PreviousActive;
+                }
+                if (Active.text[Active.hIndex] == "Quit")
+                {
+                    this.Exit();
+                }
+            }
 
             _previousMouseState1 = _currentMouseState1;
    

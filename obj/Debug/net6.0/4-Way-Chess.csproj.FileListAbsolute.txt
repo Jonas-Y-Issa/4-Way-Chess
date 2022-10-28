@@ -69,3 +69,4 @@ C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\obj\Debug\n
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\obj\Debug\net6.0\4-Way-Chess.pdb
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\obj\Debug\net6.0\4-Way-Chess.genruntimeconfig.cache
 C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\obj\Debug\net6.0\ref\4-Way-Chess.dll
+C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Debug\net6.0\Content\Corporation.xnb

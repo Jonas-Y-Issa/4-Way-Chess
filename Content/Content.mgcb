@@ -104,6 +104,13 @@
 /processorParam:TextureFormat=Color
 /build:Cog2.png
 
+#begin Corporation.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Corporation.spritefont
+
 #begin cursor.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -181,13 +188,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Settings.png
-
-#begin SpriteFont1.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:SpriteFont1.spritefont
 
 #begin Square.png
 /importer:TextureImporter

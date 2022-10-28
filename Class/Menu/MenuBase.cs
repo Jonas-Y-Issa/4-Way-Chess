@@ -21,13 +21,13 @@ namespace _4_Way_Chess
         SoundEffect MenuNote;
 
         int x;
-        float Scale = 2;
+        float Scale = 1;
         public List<string> text = new List<string>();
         List<Color> clr = new List<Color>();
         public MenuBase[] Menus = new MenuBase[] {};
         public List<Rectangle> menuOpt = new List<Rectangle>();
-        Color textColor = Color.Black;
-        Color offsettextColor = Color.White;
+        Color textColor = Color.White;
+        Color offsettextColor = Color.Yellow;
         int hoverIndex = -1;
         public int hIndex { get { return hoverIndex; } }
 
@@ -65,7 +65,7 @@ namespace _4_Way_Chess
         public void Update(GameTime gameTime)
         {
             x = (int)((Game1.testW * Resolution.ratio) / 2);
-            font = Content.Load<SpriteFont>("SpriteFont1");
+            font = Content.Load<SpriteFont>("Corporation");
 
             for (int i = 0; i < text.Count(); i++)
             {
