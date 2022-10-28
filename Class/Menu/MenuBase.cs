@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Formats.Asn1.AsnWriter;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace _4_Way_Chess
@@ -20,14 +21,17 @@ namespace _4_Way_Chess
         SpriteFont font;
         SoundEffect MenuNote;
         int x;
+        public int y = 350;
         float Scale = 1;
         public List<string> text = new List<string>();
         List<Color> clr = new List<Color>();
+        Vector2 position;
         public MenuBase[] Menus = new MenuBase[] {};
         public List<Rectangle> menuOpt = new List<Rectangle>();
         Color textColor = Color.White;
         Color offsettextColor = Color.Yellow;
         int hoverIndex = -1;
+        public MenuBase previousActive;
         public int hIndex { get { return hoverIndex; } }
 
         public MenuBase(ContentManager contentManager, string txtTitle, MenuBase[] menuList, string[] strList)
@@ -50,25 +54,26 @@ namespace _4_Way_Chess
 
         }
 
-        public void LoadContent()
+        public virtual void LoadContent()
         {
             MenuNote = Content.Load<SoundEffect>("MenuTone");
 
-            for (int i = 0; i < text.Count(); i++)
-            {
-                clr.Add(textColor);
-                menuOpt.Add(new Rectangle());
-            }
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             x = (int)((Game1.displayWidth * Resolution.ratio) / 2);
             font = Content.Load<SpriteFont>("Corporation");
-
             for (int i = 0; i < text.Count(); i++)
             {
-                menuOpt[i] = new Rectangle((int)(x - ((font.MeasureString(text[i]).X / 2))), 350 + (i * (int)(font.MeasureString(text[i]).Y * Scale)), (int)(font.MeasureString(text[i]).X*Scale), (int)(font.MeasureString(text[i]).Y * Scale));
+                if (menuOpt.Count == 0 || i >= menuOpt.Count)
+                {
+                    clr.Add(textColor);
+                    menuOpt.Add(new Rectangle());
+
+                }
+
+                menuOpt[i] = new Rectangle((int)vecPosition(text[i], i).X, (int)vecPosition(text[i], i).Y, (int)(font.MeasureString(text[i]).X*Scale), (int)(font.MeasureString(text[i]).Y * Scale));
 
                 if (menuOpt[i].Contains(Game1.mousePoint))
                 {
@@ -86,12 +91,21 @@ namespace _4_Way_Chess
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             for (int i = 0; i < text.Count(); i++)
             {
-                spriteBatch.DrawString(font, text[i], new Vector2(x - ((int)((font.MeasureString(text[i]).X * Scale) / 2)), 350 + (i * (int)(font.MeasureString(text[i]).Y * Scale))), clr[i],0,new Vector2(),Scale, new SpriteEffects(), 0);
+                spriteBatch.DrawString(font, text[i], vecPosition(text[i], i), clr[i],0,new Vector2(),Scale, new SpriteEffects(), 0);
             }
+        }
+
+        public Vector2 vecPosition(string text, int index)
+        {
+            position = new Vector2(
+                x - ((int)((font.MeasureString(text).X * Scale) / 2)),
+                y + (index * (int)(font.MeasureString(text).Y * Scale)));
+
+            return position;
         }
     }
 }

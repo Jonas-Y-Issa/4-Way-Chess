@@ -37,10 +37,8 @@ namespace _4_Way_Chess
         MenuBase Priv = new MenuBase("Private");
         MenuBase LN = new MenuBase("LAN");
         MenuBase Opt = new MenuBase("Options");
-        MenuBase Cred = new MenuBase("Credits");
-        MenuBase Qu = new MenuBase("Queue");
         public static MenuBase Active;
-        MenuBase PreviousActive;
+        QueLayout Qu;
 
 
         public enum MenuState
@@ -189,20 +187,14 @@ namespace _4_Way_Chess
             #region Menu
 
             Menu = new StartMenu(Content);
-            Priv = new MenuBase(Content, "Online", new MenuBase[] {}, new string[] { "Host", "Join", "", "Back" });
+            Qu = new QueLayout(Content, "Host", new MenuBase[] { }, new string[] { "Start Game", "Back" });
+            Priv = new MenuBase(Content, "Online", new MenuBase[] { Qu }, new string[] { "Join", "", "Back" });
             Opt = new MenuBase(Content, "Options", new MenuBase[] {}, new string[] { "-", "-", "-", "Back" });
             LN = new MenuBase(Content, "LAN", new MenuBase[] {}, new string[] { "Host", "Join", "", "Back" });
             MOptions = new MenuBase(Content, "Main Menu", new MenuBase[] { Priv, LN, Opt }, new string[] { "", "Quit" });
             Active = MOptions;
 
-            Qu = new MenuBase(Content, "Que", new MenuBase[] { }, new string[] { });
-
             Menu.LoadContent();
-            MOptions.LoadContent();
-            Priv.LoadContent();
-            Opt.LoadContent();
-            LN.LoadContent();
-            Qu.LoadContent();
 
             #endregion
 
@@ -399,14 +391,19 @@ namespace _4_Way_Chess
                             && Active.menuOpt[Active.hIndex].Contains(mousePoint)
                             && Active.hIndex < Active.Menus.Length)
                         {
-
-                            PreviousActive = Active;
-                            Active = MOptions.Menus[MOptions.hIndex];
+                            Active.Menus[Active.hIndex].previousActive = Active;
+                            Active = Active.Menus[Active.hIndex];
+                        
                         }
+                  
                     }
+
+                    Active.LoadContent();
                     Active.Update(gameTime);
 
                     break;
+            
+
             }
 
             #region Pawns
@@ -531,7 +528,10 @@ namespace _4_Way_Chess
             {
                 if (Active.text[Active.hIndex] == "Back")
                 {
-                    Active = PreviousActive;
+
+
+                    Active = Active.previousActive;
+
                 }
                 if (Active.text[Active.hIndex] == "Quit")
                 {
