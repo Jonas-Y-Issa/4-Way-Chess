@@ -22,7 +22,7 @@ namespace _4_Way_Chess
         SoundEffect MenuNote;
         int x;
         public int y = 350;
-        float Scale = 1;
+        public float Scale = 1;
         public List<string> text = new List<string>();
         List<Color> clr = new List<Color>();
         Vector2 position;
@@ -62,6 +62,11 @@ namespace _4_Way_Chess
 
         public virtual void Update(GameTime gameTime)
         {
+            Scale = ((Game1.displayHeight * Resolution.ratio) / ((Game1.displayWidth * Resolution.ratio)));
+            if (Scale < 0.5)
+            {
+                Scale = 0.5f;
+            }
             x = (int)((Game1.displayWidth * Resolution.ratio) / 2);
             font = Content.Load<SpriteFont>("Corporation");
             for (int i = 0; i < text.Count(); i++)

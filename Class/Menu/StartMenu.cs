@@ -32,6 +32,7 @@ namespace _4_Way_Chess
         float g = 0;
         SpriteFont corp;
         SpriteFont Arial;
+        string[] tintOpt = { "Host" };
 
 
         public StartMenu(ContentManager contentManager)
@@ -55,7 +56,7 @@ namespace _4_Way_Chess
             HeaderBox = new Rectangle((int)((Game1.displayWidth * Resolution.ratio) / 2) - (int)((HeaderBox.Width / 2)), 15, Header.Width / 3, Header.Height / 3);
             Wallpaper = new Rectangle((int)(-(WallpaperTexture.Width * 1.5)+ (Game1.displayWidth * Resolution.ratio)+t), (int)(-(WallpaperTexture.Height * 1.5) + (Game1.displayHeight * Resolution.ratio) + g), (int)(WallpaperTexture.Width * 1.5), (int)(WallpaperTexture.Height * 1.5));
 
-            if (Game1.Active.title == "Private")
+            if (tintOpt.Contains(Game1.Active.title))
             {
                 tint = Color.Yellow;
             }

@@ -60,7 +60,7 @@ namespace Class.GameSetup
             else if (dotTimer >= 280)
             {
                 dotTimer = 0;
-                //Game1.menuEnum = Game1.MenuState.Game;
+                Game1.menuEnum = Game1.MenuState.Game;
             }
 
         }

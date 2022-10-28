@@ -30,7 +30,6 @@ namespace Class.GameSetup
         public override void LoadContent()
         {
             Que = Content.Load<Texture2D>("Que");
-            base.y = Que.Height * 4 + 400;
             base.LoadContent();
 
         }
@@ -42,9 +41,11 @@ namespace Class.GameSetup
 
             for (int i = 0; i < 4; i++)
             {
-                QueBox[i] = new Rectangle((int)(Game1.displayWidth * Resolution.ratio / 2) - QueBox[i].Width / 2, 300 + i * 180, Que.Width, Que.Height);
+                QueBox[i] = new Rectangle((int)(Game1.displayWidth * Resolution.ratio / 2) - QueBox[i].Width / 2, 300 + (int)((i * 180)*Scale), (int)(Que.Width * base.Scale), (int)(Que.Height * base.Scale));
 
             }
+            base.y = QueBox[3].Y + QueBox[3].Height + 50;
+
             base.Update(gameTime);
         }
 
