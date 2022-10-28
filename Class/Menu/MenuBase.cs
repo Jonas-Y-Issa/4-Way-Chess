@@ -19,7 +19,6 @@ namespace _4_Way_Chess
         ContentManager Content;
         SpriteFont font;
         SoundEffect MenuNote;
-
         int x;
         float Scale = 1;
         public List<string> text = new List<string>();
@@ -64,7 +63,7 @@ namespace _4_Way_Chess
 
         public void Update(GameTime gameTime)
         {
-            x = (int)((Game1.testW * Resolution.ratio) / 2);
+            x = (int)((Game1.displayWidth * Resolution.ratio) / 2);
             font = Content.Load<SpriteFont>("Corporation");
 
             for (int i = 0; i < text.Count(); i++)

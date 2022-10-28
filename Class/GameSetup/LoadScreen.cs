@@ -34,7 +34,7 @@ namespace Class.GameSetup
 
         public void Update(GameTime gameTime)
         {
-            BackgroundBox = new Rectangle((int)(Game1.testW * Resolution.ratio / 2 - BackgroundBox.Width / 2), (int)(Game1.testH * Resolution.ratio / 2 - BackgroundBox.Height / 2 - 100), 500, 500);
+            BackgroundBox = new Rectangle((int)(Game1.displayWidth * Resolution.ratio / 2 - BackgroundBox.Width / 2), (int)(Game1.displayHeight * Resolution.ratio / 2 - BackgroundBox.Height / 2 - 100), 500, 500);
 
             LoadingPosition = new Vector2(BackgroundBox.X + BackgroundBox.Width / 2 - font.MeasureString("Loading Game").X / 2, BackgroundBox.Y + BackgroundBox.Height / 2 - font.MeasureString("Loading Game").Y + 14);
 

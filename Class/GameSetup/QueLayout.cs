@@ -52,12 +52,12 @@ namespace Class.GameSetup
         public void Update(GameTime gameTime)
         {
 
-            menuOpt[0] = new Rectangle(50, (int)(Game1.testH * Resolution.ratio - 100), 100, 100);
-            menuOpt[1] = new Rectangle((int)(Game1.testW * Resolution.ratio - font.MeasureString(menus[0]).X - 50), (int)(Game1.testH * Resolution.ratio - 100), (int)font.MeasureString(menus[0]).X, (int)font.MeasureString(menus[0]).Y);
+            menuOpt[0] = new Rectangle(50, (int)(Game1.displayHeight * Resolution.ratio - 100), 100, 100);
+            menuOpt[1] = new Rectangle((int)(Game1.displayWidth * Resolution.ratio - font.MeasureString(menus[0]).X - 50), (int)(Game1.displayHeight * Resolution.ratio - 100), (int)font.MeasureString(menus[0]).X, (int)font.MeasureString(menus[0]).Y);
 
             for (int i = 0; i < 4; i++)
             {
-                QueBox[i] = new Rectangle((int)(Game1.testW * Resolution.ratio / 2) - QueBox[i].Width / 2, 300 + i * 180, Que.Width, Que.Height);
+                QueBox[i] = new Rectangle((int)(Game1.displayWidth * Resolution.ratio / 2) - QueBox[i].Width / 2, 300 + i * 180, Que.Width, Que.Height);
 
             }
         }
@@ -71,10 +71,10 @@ namespace Class.GameSetup
             /*
             if (Game1.menuEnum == Game1.MenuState.HostPrivate || Game1.menuEnum == Game1.MenuState.HostLan)
             {
-                spriteBatch.DrawString(font, menus[0], new Vector2((int)(Game1.testW * Resolution.ratio - font.MeasureString(menus[0]).X - 50), (int)(Game1.testH * Resolution.ratio - 100)), Color.White);
+                spriteBatch.DrawString(font, menus[0], new Vector2((int)(Game1.displayWidth * Resolution.ratio - font.MeasureString(menus[0]).X - 50), (int)(Game1.displayHeight * Resolution.ratio - 100)), Color.White);
             }
             */
-            spriteBatch.DrawString(font, menus[1], new Vector2(50, (int)(Game1.testH * Resolution.ratio - 100)), Color.White);
+            spriteBatch.DrawString(font, menus[1], new Vector2(50, (int)(Game1.displayHeight * Resolution.ratio - 100)), Color.White);
         }
     }
 }

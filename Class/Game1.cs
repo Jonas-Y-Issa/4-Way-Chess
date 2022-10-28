@@ -19,14 +19,18 @@ namespace _4_Way_Chess
 {
     public class Game1 : Game
     {
-        #region Class Declarations
+
+        #region Display
+
         GraphicsDeviceManager graphics;
-        GraphicsDevice gd;
+        public static int displayWidth;
+        public static int displayHeight;
+
+        #endregion
+
+        #region Menu Declarations
+
         SpriteBatch spriteBatch;
-        Board board;
-        Random rand = new Random();
-        Settings inGame_settings;
-        ScoreBoard inGame_scoreboard;
 
         StartMenu Menu;
         MenuBase MOptions = new MenuBase("Main Menu");
@@ -35,12 +39,25 @@ namespace _4_Way_Chess
         MenuBase Opt = new MenuBase("Options");
         MenuBase Cred = new MenuBase("Credits");
         MenuBase Qu = new MenuBase("Queue");
-        MenuBase Active;
+        public static MenuBase Active;
         MenuBase PreviousActive;
 
-        LoadScreen loadScrn;
 
-        TextBox txtBox;
+        public enum MenuState
+        {
+            Menu,
+        };
+
+        public static MenuState menuEnum;
+
+        #endregion
+
+        #region Board Declarations
+
+        LoadScreen loadScrn;
+        Board board;
+        Settings inGame_settings;
+        ScoreBoard inGame_scoreboard;
         Base baseP;
 
         public static MyCollection<P1> PawnN = new MyCollection<P1>();
@@ -59,11 +76,7 @@ namespace _4_Way_Chess
         public static string getPawn;
         public static Rectangle[] AllPawns = new Rectangle[40];
         public static bool Occupied;
-        public static Point mousePoint;
-        public static Vector2 MousePosition
-        {
-            get { return Resolution.MousePosition; }
-        }
+
 
         Texture2D PawnNSprite;
         Texture2D PawnESprite;
@@ -76,24 +89,16 @@ namespace _4_Way_Chess
         Texture2D KingNSprite;
         Texture2D Wallpaper;
 
-        #endregion
-
-
-        string serverIP = "14.202.157.211";
-
-        public static int Loaded = 0;
+        public static int LockTime;
+        public static bool Grab;
 
         public static Rectangle[] all = new Rectangle[64];
         public static int[] allP = new int[64];
 
-
-        #region ConsoleMech
-
-        Texture2D cursorHand;
-        public static int testW;
-        public static int testH;
-        int randInt;
-        bool Pause;
+        Rectangle[] WhiteBox
+        {
+            get { return Board.WhiteBox; }
+        }
 
         #endregion
 
@@ -101,27 +106,18 @@ namespace _4_Way_Chess
 
         public static MouseState _currentMouseState1;
         public static MouseState _previousMouseState1;
+        Texture2D cursorHand;
         KeyboardState keyState;
-
-        #endregion
-
-        #region Box
-
-        public static int LockTime;
-        public static bool Grab;
-
-        #endregion
-
-        #region 3D Declarations
-
-        Model TestModel;
-        Vector3 modelPosition = Vector3.Zero;
-        float modelRotation = 0.0f;
-        Vector3 cameraPosition = new Vector3(0.0f, 50.0f, 5000.0f);
-
+        public static Point mousePoint;
+        public static Vector2 MousePosition
+        {
+            get { return Resolution.MousePosition; }
+        }
         #endregion
 
         #region ServerId's
+
+        string serverIP = "14.202.157.211";
 
         public static long whoiam;
         public static long playerList1;
@@ -130,11 +126,6 @@ namespace _4_Way_Chess
         public static long playerList4;
 
         #endregion
-
-        Rectangle[] WhiteBox
-        {
-            get { return Board.WhiteBox; }
-        }
 
         #region SendPack
 
@@ -158,24 +149,11 @@ namespace _4_Way_Chess
         #region PlayerName Display
 
         Vector2 playerNamePosition;
-        Vector2 VersionPosition;
-        SpriteFont font;
         string[] playerName = new string[4];
 
         #endregion
 
-        Color BgColor = new Color(21, 21, 21);
 
-        public enum MenuState
-        {
-            Menu,
-            Private,
-            Lan,
-            Options,
-            Credits,
-        };
-
-        public static MenuState menuEnum;
         public static bool Entered;
         public static Process exeProcess;
 
@@ -185,61 +163,60 @@ namespace _4_Way_Chess
             graphics = new GraphicsDeviceManager(this);
             Resolution.Init(ref graphics);
             Content.RootDirectory = "Content";
-            // Change Virtual Resolution 
             Resolution.SetVirtualResolution(800, 450);
             Resolution.SetResolution(800, 450, false);
-
-            //Resolution.FullViewport();
 
             Window.AllowUserResizing = true;
             Window.Title = "4-Way Chess";
 
-            //IsMouseVisible = true;
             //graphics.ApplyChanges();
         }
 
         protected override void Initialize()
         {
-
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
+            #region Display Setup
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Resolution.vp.X = 0;
             Resolution.vp.Y = 0;
-            font = Content.Load<SpriteFont>("Arial");
             cursorHand = Content.Load<Texture2D>("cursor");
+            #endregion
 
-
+            #region Menu
 
             Menu = new StartMenu(Content);
-            Priv = new MenuBase(Content, "Private", new MenuBase[] {}, new string[] { "Host", "Join", "Back" });
-            Opt = new MenuBase(Content, "Options", new MenuBase[] {}, new string[] { "1", "2", "3", "Back" });
-            Cred = new MenuBase(Content, "Credits", new MenuBase[] {}, new string[] { "Game by ", "Younes Issa", "", "", "", "", "", "Back" });
+            Priv = new MenuBase(Content, "Online", new MenuBase[] {}, new string[] { "Host", "Join", "", "Back" });
+            Opt = new MenuBase(Content, "Options", new MenuBase[] {}, new string[] { "-", "-", "-", "Back" });
             LN = new MenuBase(Content, "LAN", new MenuBase[] {}, new string[] { "Host", "Join", "", "Back" });
-            Qu = new MenuBase(Content, "Que",new MenuBase[] { }, new string[] { });
-            MOptions = new MenuBase(Content, "Main Menu", new MenuBase[] { Priv, LN, Opt, Cred }, new string[] { "Quit" });
+            MOptions = new MenuBase(Content, "Main Menu", new MenuBase[] { Priv, LN, Opt }, new string[] { "", "Quit" });
             Active = MOptions;
+
+            Qu = new MenuBase(Content, "Que", new MenuBase[] { }, new string[] { });
 
             Menu.LoadContent();
             MOptions.LoadContent();
             Priv.LoadContent();
             Opt.LoadContent();
-            Cred.LoadContent();
             LN.LoadContent();
             Qu.LoadContent();
 
+            #endregion
+
+            #region Board
+
             board = new Board(Content);
             loadScrn = new LoadScreen(Content);
-            txtBox = new TextBox(Content);
             inGame_settings = new Settings(Content);
             inGame_scoreboard = new ScoreBoard(Content);
 
-            txtBox.LoadContent();
             inGame_scoreboard.LoadContent();
             inGame_settings.LoadContent();
+
+            #endregion
 
             #region Load Pieces
 
@@ -360,20 +337,15 @@ namespace _4_Way_Chess
 
             #endregion
 
-
         }
 
         protected override void Update(GameTime gameTime)
         {
-
+            #region Input
             _currentMouseState1 = Mouse.GetState();
             keyState = Keyboard.GetState();
             mousePoint = new Point((int)MousePosition.X, (int)MousePosition.Y);
 
-            if (_currentMouseState1.MiddleButton == ButtonState.Pressed)
-            {
-                testH = (int)MousePosition.X;
-            }
             if (_currentMouseState1.LeftButton == ButtonState.Pressed)
             {
                 cursorHand = Content.Load<Texture2D>("Hand");
@@ -383,6 +355,61 @@ namespace _4_Way_Chess
                 cursorHand = Content.Load<Texture2D>("cursor");
 
             }
+            #endregion
+
+            #region Display
+
+            if (Window.ClientBounds.Width < 800)
+            {
+                Resolution.SetVirtualResolution(800, Window.ClientBounds.Height);
+                Resolution.SetResolution(800, Window.ClientBounds.Height, false);
+            }
+            if (Window.ClientBounds.Height < 600)
+            {
+                Resolution.SetVirtualResolution(Window.ClientBounds.Width, 600);
+                Resolution.SetResolution(Window.ClientBounds.Width, 600, false);
+            }
+            else if (Window.ClientBounds.Height > Window.ClientBounds.Width - 200)
+            {
+                Resolution.SetVirtualResolution(Window.ClientBounds.Width, Window.ClientBounds.Width - 200);
+                Resolution.SetResolution(Window.ClientBounds.Width, Window.ClientBounds.Width - 200, false);
+            }
+            else
+            {
+                Resolution.SetVirtualResolution(Window.ClientBounds.Width, Window.ClientBounds.Height);
+                Resolution.SetResolution(Window.ClientBounds.Width, Window.ClientBounds.Height, false);
+            }
+
+            displayWidth = Window.ClientBounds.Width;
+            displayHeight = Window.ClientBounds.Height;
+
+            Resolution.thisT = true;
+
+            #endregion
+
+            if (Active.title != "Game" || Active.title != "Loading")
+            {
+                Menu.Update(gameTime);
+            }
+            switch (menuEnum)
+            {
+                case MenuState.Menu:
+                    if (Active.hIndex > -1) {
+                        if (Click()
+                            && Active.menuOpt[Active.hIndex].Contains(mousePoint)
+                            && Active.hIndex < Active.Menus.Length)
+                        {
+
+                            PreviousActive = Active;
+                            Active = MOptions.Menus[MOptions.hIndex];
+                        }
+                    }
+                    Active.Update(gameTime);
+
+                    break;
+            }
+
+            #region Pawns
 
             for (int o = 0; o < 8; o++)
             {
@@ -419,86 +446,14 @@ namespace _4_Way_Chess
 
             }
 
-
-            #region Client Form
-
-
-
-            IntPtr hWnd = this.Window.Handle;
-
-
-            if (playerList1 == null)
-            {
-                playerName[0] = "";
-
-            }
-
-            //Window.ClientSizeChanged += new EventHandler<EventArgs>(Window_ClientSizeChanged);
-
-            if (Window.ClientBounds.Width < 800)
-            {
-                Resolution.SetVirtualResolution(800, Window.ClientBounds.Height);
-                Resolution.SetResolution(800, Window.ClientBounds.Height, false);
-
-            }
-            if (Window.ClientBounds.Height < 600)
-            {
-                Resolution.SetVirtualResolution(Window.ClientBounds.Width, 600);
-                Resolution.SetResolution(Window.ClientBounds.Width, 600, false);
-            }
-            else if (Window.ClientBounds.Height > Window.ClientBounds.Width - 200)
-            {
-                Resolution.SetVirtualResolution(Window.ClientBounds.Width, Window.ClientBounds.Width - 200);
-                Resolution.SetResolution(Window.ClientBounds.Width, Window.ClientBounds.Width - 200, false);
-            }
-            else
-            {
-                Resolution.SetVirtualResolution(Window.ClientBounds.Width, Window.ClientBounds.Height);
-                Resolution.SetResolution(Window.ClientBounds.Width, Window.ClientBounds.Height, false);
-            }
-
-            testW = Window.ClientBounds.Width;
-            testH = Window.ClientBounds.Height;
-
-
-            Resolution.thisT = true;
             #endregion
 
-            Menu.Update(gameTime);
-            switch (menuEnum)
-            {
-                case MenuState.Menu:
-                    if (Active.hIndex > -1) {
-                        if (Click()
-                            && Active.menuOpt[Active.hIndex].Contains(Game1.mousePoint)
-                            && Active.hIndex < Active.Menus.Length)
-                        {
-
-                            PreviousActive = Active;
-                            Active = MOptions.Menus[MOptions.hIndex];
-                        }
-                    }
-                    Active.Update(gameTime);
-
-                    break;
-            }
             #region Case
 
-            /*            if (menuEnum != MenuState.Game || menuEnum != MenuState.Loading)
-                        {
-                            Menu.Update(gameTime);
-                        }
+            /*        
+             *        
                         switch (menuEnum)
                         {
-                            case MenuState.Menu:
-
-                                MOptions.Update(gameTime);
-
-                                if (Click() && MOptions.menuOpt[MOptions.hIndex].Contains(Game1.mousePoint))
-                                {
-                                    menuEnum = (MenuState)MOptions.hIndex;
-                                }
-                                break;
                             case MenuState.Name:
 
                                 txtBox.Update(gameTime);
@@ -515,30 +470,6 @@ namespace _4_Way_Chess
                                 inGame_scoreboard.Update(gameTime);
                                 break;
 
-                            case MenuState.Lan:
-
-                                LN.Update(gameTime);
-                                if (Click() && LN.menuOpt[3].Contains(Game1.mousePoint))
-                                {
-                                    menuEnum = MenuState.Menu;
-                                }
-                                break;
-                            case MenuState.Credits:
-
-                                Cred.Update(gameTime);
-                                if (Click() && Cred.menuOpt[9].Contains(Game1.mousePoint))
-                                {
-                                    menuEnum = MenuState.Menu;
-                                }
-                                break;
-                            case MenuState.Options:
-
-                                Opt.Update(gameTime);
-                                if (Click() && Opt.menuOpt[Opt.hIndex].Contains(Game1.mousePoint) && Opt.text[Opt.hIndex] == "Back")
-                                {
-                                    menuEnum = MenuState.Menu;
-                                }
-                                break;
                             case MenuState.HostPrivate:
 
                                 Qu.Update(gameTime);
@@ -564,6 +495,15 @@ namespace _4_Way_Chess
                                 break;
                         }
             */
+            #endregion
+
+            #region Player
+            if (playerList1 == null)
+            {
+                playerName[0] = "";
+
+            }
+
             if (playerTurn != 1)
             {
                 Moved1 = false;
@@ -583,37 +523,11 @@ namespace _4_Way_Chess
 
             #endregion
 
-            VersionPosition = new Vector2(15, Game1.testH * Resolution.ratio - 40);
-
-            #region Pause Game
-
-            //if (IsActive == true)
-            //{
-            //    Pause = false;
-            //}
-            //else
-            //{
-            //    Pause = true;
-            //}
-
-            //if (_currentMouseState1.X > 800 || _currentMouseState1.Y > 500 || _currentMouseState1.X < 0 || _currentMouseState1.Y < 0)
-            //{
-            //    Pause = true;
-            //}
-            //else
-            //{
-            //Pause = false;
-            //}
-
-            #endregion
-
-            MouseButtonReset();
-
+            #region Input
             if (keyState.IsKeyDown(Keys.Escape) 
                 || GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed 
-                || 
-                (Click() && Active.hIndex > -1
-                && Active.menuOpt[Active.hIndex].Contains(Game1.mousePoint)))
+                ||(Click() && Active.hIndex > -1
+                && Active.menuOpt[Active.hIndex].Contains(mousePoint)))
             {
                 if (Active.text[Active.hIndex] == "Back")
                 {
@@ -625,8 +539,11 @@ namespace _4_Way_Chess
                 }
             }
 
+            MouseButtonReset();
             _previousMouseState1 = _currentMouseState1;
-   
+            #endregion
+
+
             Resolution.Update(gameTime);
             base.Update(gameTime);
         }
@@ -638,7 +555,6 @@ namespace _4_Way_Chess
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null,
                 Resolution.getTransformationMatrix());
 
-            graphics.GraphicsDevice.Clear(BgColor);
             Menu.Draw(spriteBatch);
             Active.Draw(spriteBatch);
 
@@ -676,7 +592,7 @@ namespace _4_Way_Chess
                         {
                             if (playerName[i] != null)
                             {
-                                spriteBatch.DrawString(font, playerName[i], new Vector2(((testW * Resolution.ratio) / 2) - ((int)font.MeasureString(playerName[i]).X / 2), 300 + (i * 180)), Color.White);
+                                spriteBatch.DrawString(font, playerName[i], new Vector2(((displayWidth * Resolution.ratio) / 2) - ((int)font.MeasureString(playerName[i]).X / 2), 300 + (i * 180)), Color.White);
 
                             }
                         }
@@ -689,7 +605,7 @@ namespace _4_Way_Chess
                         {
                             if (playerName[i] != null)
                             {
-                                spriteBatch.DrawString(font, playerName[i], new Vector2(((testW * Resolution.ratio) / 2) - ((int)font.MeasureString(playerName[i]).X / 2), 300 + (i * 180)), Color.White);
+                                spriteBatch.DrawString(font, playerName[i], new Vector2(((displayWidth * Resolution.ratio) / 2) - ((int)font.MeasureString(playerName[i]).X / 2), 300 + (i * 180)), Color.White);
 
                             }
                         }
@@ -708,7 +624,7 @@ namespace _4_Way_Chess
                     graphics.GraphicsDevice.Clear(Color.Black);
 
                     //spriteBatch.DrawString(font, playerName, playerNamePosition, Color.White);
-                    spriteBatch.Draw(Wallpaper, new Rectangle((int)(testW * Resolution.ratio) / 2 - ((int)(Wallpaper.Width * 2.5) / 2), (int)(testH * Resolution.ratio) / 2 - ((int)(Wallpaper.Height * 2.5) / 2), (int)(Wallpaper.Width * 2.5), (int)(Wallpaper.Height * 2.5)), Color.White);
+                    spriteBatch.Draw(Wallpaper, new Rectangle((int)(displayWidth * Resolution.ratio) / 2 - ((int)(Wallpaper.Width * 2.5) / 2), (int)(displayHeight * Resolution.ratio) / 2 - ((int)(Wallpaper.Height * 2.5) / 2), (int)(Wallpaper.Width * 2.5), (int)(Wallpaper.Height * 2.5)), Color.White);
                     board.Draw(spriteBatch);
 
                     foreach (P1 pn in PawnN)
@@ -757,7 +673,6 @@ namespace _4_Way_Chess
                 spriteBatch.Draw(cursorHand, new Vector2(Resolution.MousePosition.X, Resolution.MousePosition.Y), Color.White);
             }
 
-            spriteBatch.DrawString(font, "Beta V4.2", VersionPosition, Color.Red);
             spriteBatch.End();
 
             spriteBatch.Begin();
@@ -770,9 +685,6 @@ namespace _4_Way_Chess
             */
             spriteBatch.End();
 
-
-
-
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null,
       Resolution.getTransformationMatrix());
 
@@ -784,7 +696,7 @@ namespace _4_Way_Chess
 
             //if (playerName[0] != null)
             //{
-            //    spriteBatch.DrawString(font, playerName[0], new Vector2(((testW * Resolution.ratio) / 2), 480), Color.White);
+            //    spriteBatch.DrawString(font, playerName[0], new Vector2(((displayWidth * Resolution.ratio) / 2), 480), Color.White);
             //}
             spriteBatch.End();
 
@@ -793,8 +705,6 @@ namespace _4_Way_Chess
         }
 
         #region Methods
-
-
 
         public void ECS(object command)
         {
@@ -1137,14 +1047,7 @@ namespace _4_Way_Chess
             return GraphicsDevice.Viewport.Bounds.Contains(pos);
         }
 
-        public int graphWid()
-        {
-
-            return Window.ClientBounds.Right;
-        }
-
         #endregion
-
 
         private void Window_ClientSizeChanged(object sender, System.EventArgs e)
         {
@@ -1171,8 +1074,8 @@ namespace _4_Way_Chess
                 Resolution.SetResolution(Window.ClientBounds.Width, Window.ClientBounds.Height, false);
             }
 
-            testW = Window.ClientBounds.Width;
-            testH = Window.ClientBounds.Height;
+            displayWidth = Window.ClientBounds.Width;
+            displayHeight = Window.ClientBounds.Height;
 
         }
 
@@ -1180,9 +1083,6 @@ namespace _4_Way_Chess
         {
             base.OnExiting(sender, args);
         }
-
-
-
 
     }
 }

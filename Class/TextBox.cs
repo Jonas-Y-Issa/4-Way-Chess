@@ -49,7 +49,7 @@ namespace _4_Way_Chess
 
         public void Update(GameTime gameTime)
         {
-            NameInputBox = new Rectangle((int)((int)(Game1.testW * Resolution.ratio) / 2) - (int)(NameInputBox.Width / 2), 350, 218, 30);
+            NameInputBox = new Rectangle((int)((int)(Game1.displayWidth * Resolution.ratio) / 2) - (int)(NameInputBox.Width / 2), 350, 218, 30);
         
             
             

@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>4-Way-Chess</id>
+    <version>1.0.0</version>
+    <authors>4-Way-Chess</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="MonoGame.Content.Builder.Task" version="3.8.1.303" exclude="Build,Analyzers" />
+        <dependency id="MonoGame.Framework.DesktopGL" version="3.8.1.303" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <contentFiles>
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Alpha.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Alphaa.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Arial.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/b22.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/background.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/BackgroundTest.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/BestBoard.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Bishop.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Board.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Chess_symbols.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/cog.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Cog2.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Corporation.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/cursor.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Hand.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Handl.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Head.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Head2.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Header.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Horse.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Horseg.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Horsse.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/King.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Knight.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/MenuTone.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Paw1nS.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/PawnE.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/PawnN - Copy (2).xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/PawnN - Copy.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/PawnN.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/PawnS.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/PawnW.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Que.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Queen.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Rook.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Rookd.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/score.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/score2 - Copy.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/score2.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/scoreds.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Settings.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/SpriteFont1.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Square.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/testsquare.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Text.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Wallpaper.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Wallpaper1.xnb" buildAction="Content" />
+      <files include="any/net6.0/Content/bin/DesktopGL/Content/Wallpaper2.xnb" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Release\net6.0\4-Way-Chess.runtimeconfig.json" target="lib\net6.0\4-Way-Chess.runtimeconfig.json" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\bin\Release\net6.0\4-Way-Chess.dll" target="lib\net6.0\4-Way-Chess.dll" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Alpha.xnb" target="content\Content\bin\DesktopGL\Content\Alpha.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Alpha.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Alpha.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Alphaa.xnb" target="content\Content\bin\DesktopGL\Content\Alphaa.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Alphaa.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Alphaa.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Arial.xnb" target="content\Content\bin\DesktopGL\Content\Arial.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Arial.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Arial.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\b22.xnb" target="content\Content\bin\DesktopGL\Content\b22.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\b22.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\b22.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\background.xnb" target="content\Content\bin\DesktopGL\Content\background.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\background.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\background.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\BackgroundTest.xnb" target="content\Content\bin\DesktopGL\Content\BackgroundTest.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\BackgroundTest.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\BackgroundTest.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\BestBoard.xnb" target="content\Content\bin\DesktopGL\Content\BestBoard.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\BestBoard.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\BestBoard.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Bishop.xnb" target="content\Content\bin\DesktopGL\Content\Bishop.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Bishop.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Bishop.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Board.xnb" target="content\Content\bin\DesktopGL\Content\Board.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Board.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Board.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Chess_symbols.xnb" target="content\Content\bin\DesktopGL\Content\Chess_symbols.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Chess_symbols.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Chess_symbols.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\cog.xnb" target="content\Content\bin\DesktopGL\Content\cog.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\cog.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\cog.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Cog2.xnb" target="content\Content\bin\DesktopGL\Content\Cog2.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Cog2.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Cog2.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Corporation.xnb" target="content\Content\bin\DesktopGL\Content\Corporation.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Corporation.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Corporation.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\cursor.xnb" target="content\Content\bin\DesktopGL\Content\cursor.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\cursor.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\cursor.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Hand.xnb" target="content\Content\bin\DesktopGL\Content\Hand.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Hand.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Hand.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Handl.xnb" target="content\Content\bin\DesktopGL\Content\Handl.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Handl.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Handl.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Head.xnb" target="content\Content\bin\DesktopGL\Content\Head.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Head.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Head.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Head2.xnb" target="content\Content\bin\DesktopGL\Content\Head2.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Head2.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Head2.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Header.xnb" target="content\Content\bin\DesktopGL\Content\Header.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Header.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Header.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Horse.xnb" target="content\Content\bin\DesktopGL\Content\Horse.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Horse.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Horse.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Horseg.xnb" target="content\Content\bin\DesktopGL\Content\Horseg.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Horseg.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Horseg.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Horsse.xnb" target="content\Content\bin\DesktopGL\Content\Horsse.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Horsse.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Horsse.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\King.xnb" target="content\Content\bin\DesktopGL\Content\King.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\King.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\King.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Knight.xnb" target="content\Content\bin\DesktopGL\Content\Knight.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Knight.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Knight.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\MenuTone.xnb" target="content\Content\bin\DesktopGL\Content\MenuTone.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\MenuTone.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\MenuTone.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Paw1nS.xnb" target="content\Content\bin\DesktopGL\Content\Paw1nS.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Paw1nS.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Paw1nS.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\PawnE.xnb" target="content\Content\bin\DesktopGL\Content\PawnE.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\PawnE.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\PawnE.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\PawnN - Copy (2).xnb" target="content\Content\bin\DesktopGL\Content\PawnN - Copy (2).xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\PawnN - Copy (2).xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\PawnN - Copy (2).xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\PawnN - Copy.xnb" target="content\Content\bin\DesktopGL\Content\PawnN - Copy.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\PawnN - Copy.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\PawnN - Copy.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\PawnN.xnb" target="content\Content\bin\DesktopGL\Content\PawnN.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\PawnN.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\PawnN.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\PawnS.xnb" target="content\Content\bin\DesktopGL\Content\PawnS.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\PawnS.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\PawnS.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\PawnW.xnb" target="content\Content\bin\DesktopGL\Content\PawnW.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\PawnW.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\PawnW.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Que.xnb" target="content\Content\bin\DesktopGL\Content\Que.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Que.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Que.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Queen.xnb" target="content\Content\bin\DesktopGL\Content\Queen.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Queen.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Queen.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Rook.xnb" target="content\Content\bin\DesktopGL\Content\Rook.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Rook.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Rook.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Rookd.xnb" target="content\Content\bin\DesktopGL\Content\Rookd.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Rookd.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Rookd.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\score.xnb" target="content\Content\bin\DesktopGL\Content\score.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\score.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\score.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\score2 - Copy.xnb" target="content\Content\bin\DesktopGL\Content\score2 - Copy.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\score2 - Copy.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\score2 - Copy.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\score2.xnb" target="content\Content\bin\DesktopGL\Content\score2.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\score2.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\score2.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\scoreds.xnb" target="content\Content\bin\DesktopGL\Content\scoreds.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\scoreds.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\scoreds.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Settings.xnb" target="content\Content\bin\DesktopGL\Content\Settings.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Settings.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Settings.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\SpriteFont1.xnb" target="content\Content\bin\DesktopGL\Content\SpriteFont1.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\SpriteFont1.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\SpriteFont1.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Square.xnb" target="content\Content\bin\DesktopGL\Content\Square.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Square.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Square.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\testsquare.xnb" target="content\Content\bin\DesktopGL\Content\testsquare.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\testsquare.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\testsquare.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Text.xnb" target="content\Content\bin\DesktopGL\Content\Text.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Text.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Text.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Wallpaper.xnb" target="content\Content\bin\DesktopGL\Content\Wallpaper.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Wallpaper.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Wallpaper.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Wallpaper1.xnb" target="content\Content\bin\DesktopGL\Content\Wallpaper1.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Wallpaper1.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Wallpaper1.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Wallpaper2.xnb" target="content\Content\bin\DesktopGL\Content\Wallpaper2.xnb" />
+    <file src="C:\Users\Nani\Desktop\Younes-Work\Github\4-WayChess-2022\4-Way-Chess\Content\bin\DesktopGL\Content\Wallpaper2.xnb" target="contentFiles\any\net6.0\Content\bin\DesktopGL\Content\Wallpaper2.xnb" />
+  </files>
+</package>

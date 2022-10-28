@@ -41,7 +41,7 @@ namespace Class.GameSetup
             Cog = cont.Load<Texture2D>("score");
             SideBar = cont.Load<Texture2D>("Settings");
 
-            CogHitbox = new Rectangle(Game1.testW - 180, 5, 80, 80);
+            CogHitbox = new Rectangle(Game1.displayWidth - 180, 5, 80, 80);
 
             SideBarbox = new Rectangle(CogHitbox.X - SideBar.Width, 0, SideBar.Width, SideBar.Height);
             MB(Game1._currentMouseState1, Game1._previousMouseState1,
