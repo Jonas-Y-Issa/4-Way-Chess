@@ -13,6 +13,7 @@ using System.IO;
 using System.Reflection;
 using System.Net;
 using System.ComponentModel;
+using Class.GameSetup;
 
 namespace _4_Way_Chess
 {
@@ -22,20 +23,23 @@ namespace _4_Way_Chess
         GraphicsDeviceManager graphics;
         GraphicsDevice gd;
         SpriteBatch spriteBatch;
-        StartMenu Menu;
         Board board;
-        //Camera2d cam = new Camera2d();
         Random rand = new Random();
-        LoadScreen loadScrn;
         Settings inGame_settings;
         ScoreBoard inGame_scoreboard;
-        MenuOptions MOptions;
-        Credits Cred;
+
+        StartMenu Menu;
+        MenuBase MOptions = new MenuBase("Main Menu");
+        MenuBase Priv = new MenuBase("Private");
+        MenuBase LN = new MenuBase("LAN");
+        MenuBase Opt = new MenuBase("Options");
+        MenuBase Cred = new MenuBase("Credits");
+        MenuBase Qu = new MenuBase("Queue");
+        MenuBase Active;
+
+        LoadScreen loadScrn;
+
         TextBox txtBox;
-        Options Opt;
-        Private Priv;
-        Lan LN;
-        QueLayout Qu;
         Base baseP;
 
         public static MyCollection<P1> PawnN = new MyCollection<P1>();
@@ -155,7 +159,6 @@ namespace _4_Way_Chess
         Vector2 playerNamePosition;
         Vector2 VersionPosition;
         SpriteFont font;
-        SpriteFont font1;
         string[] playerName = new string[4];
 
         #endregion
@@ -165,21 +168,10 @@ namespace _4_Way_Chess
         public enum MenuState
         {
             Menu,
-            Online,
-            HostOnline,
-            JoinOnline,
             Private,
-            HostPrivate,
-            JoinPrivate,
             Lan,
-            HostLan,
-            JoinLan,
             Options,
             Credits,
-            Loading,
-            Game,
-            Name,
-            EnterIp,
         };
 
         public static MenuState menuEnum;
@@ -191,7 +183,6 @@ namespace _4_Way_Chess
         {
             graphics = new GraphicsDeviceManager(this);
             Resolution.Init(ref graphics);
-
             Content.RootDirectory = "Content";
             // Change Virtual Resolution 
             Resolution.SetVirtualResolution(800, 450);
@@ -208,48 +199,52 @@ namespace _4_Way_Chess
 
         protected override void Initialize()
         {
+
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            Resolution.vp.X = 0;
+            Resolution.vp.Y = 0;
             font = Content.Load<SpriteFont>("Arial");
-            //font1 = Content.Load<SpriteFont>("SpriteFont1");
+            cursorHand = Content.Load<Texture2D>("cursor");
+
+
+
+            Menu = new StartMenu(Content);
+            Priv = new MenuBase(Content, "Private", new MenuBase[] {}, new string[] { "Host", "Join", "Back" });
+            Opt = new MenuBase(Content, "Options", new MenuBase[] {}, new string[] { "1", "2", "3", "Back" });
+            Cred = new MenuBase(Content, "Credits", new MenuBase[] {}, new string[] { "Game by ", "Younes Issa", "", "", "", "", "", "", "", "Back" });
+            LN = new MenuBase(Content, "LAN", new MenuBase[] {}, new string[] { "Host", "Join", "", "Back" });
+            Qu = new MenuBase(Content, "Que",new MenuBase[] { }, new string[] { });
+            MOptions = new MenuBase(Content, "Main Menu", new MenuBase[] { Priv, LN, Opt, Cred }, new string[] { "Quit" });
+            Active = MOptions;
+
+            Menu.LoadContent();
+            MOptions.LoadContent();
+            Priv.LoadContent();
+            Opt.LoadContent();
+            Cred.LoadContent();
+            LN.LoadContent();
+            Qu.LoadContent();
 
             board = new Board(Content);
-            Menu = new StartMenu(Content);
             loadScrn = new LoadScreen(Content);
             txtBox = new TextBox(Content);
             inGame_settings = new Settings(Content);
             inGame_scoreboard = new ScoreBoard(Content);
-            MOptions = new MenuOptions(Content);
-            Cred = new Credits(Content);
-            Opt = new Options(Content, font);
-            Priv = new Private(Content, font);
-            LN = new Lan(Content);
-            Qu = new QueLayout(Content, font);
-            baseP = new Base();
 
-            Resolution.vp.X = 0;
-            Resolution.vp.Y = 0;
-
-            LN.LoadContent();
-            Qu.LoadContent();
-            Menu.LoadContent();
             txtBox.LoadContent();
             inGame_scoreboard.LoadContent();
             inGame_settings.LoadContent();
-            MOptions.LoadContent();
-            Cred.LoadContent();
-            Opt.LoadContent();
-            Priv.LoadContent();
-            baseP.LoadContent();
-            cursorHand = Content.Load<Texture2D>("cursor");
-            inGame_scoreboard.LoadContent();
 
-            inGame_settings.LoadContent();
+            #region Load Pieces
+
+            baseP = new Base();
+            baseP.LoadContent();
+
             PawnNSprite = Content.Load<Texture2D>("PawnN");
             PawnESprite = Content.Load<Texture2D>("PawnE");
             PawnSSprite = Content.Load<Texture2D>("PawnS");
@@ -260,7 +255,6 @@ namespace _4_Way_Chess
             QueenNSprite = Content.Load<Texture2D>("Queen");
             KingNSprite = Content.Load<Texture2D>("King");
             Wallpaper = Content.Load<Texture2D>("background");
-
             #region N Set
             PawnN.Add(new P1(PawnNSprite, WhiteBox[8].X, WhiteBox[9].Y, 1, Color.Green));
             PawnN.Add(new P1(PawnNSprite, WhiteBox[9].X, WhiteBox[9].Y, 1, Color.Green));
@@ -363,6 +357,7 @@ namespace _4_Way_Chess
 
             #endregion
 
+            #endregion
 
 
         }
@@ -371,10 +366,20 @@ namespace _4_Way_Chess
         {
 
             _currentMouseState1 = Mouse.GetState();
+            keyState = Keyboard.GetState();
+            mousePoint = new Point((int)MousePosition.X, (int)MousePosition.Y);
 
             if (_currentMouseState1.MiddleButton == ButtonState.Pressed)
             {
                 testH = (int)MousePosition.X;
+            }
+            if (_currentMouseState1.LeftButton == ButtonState.Pressed)
+            {
+                cursorHand = Content.Load<Texture2D>("Hand");
+            }
+            else
+            {
+                cursorHand = Content.Load<Texture2D>("cursor");
 
             }
 
@@ -412,25 +417,11 @@ namespace _4_Way_Chess
                 allP[(o + 60)] = KingN[o].player;
 
             }
-            keyState = Keyboard.GetState();
-            mousePoint = new Point((int)MousePosition.X, (int)MousePosition.Y);
-
-
-
-
 
 
             #region Client Form
 
-            if (_currentMouseState1.LeftButton == ButtonState.Pressed)
-            {
-                cursorHand = Content.Load<Texture2D>("Hand");
-            }
-            else
-            {
-                cursorHand = Content.Load<Texture2D>("cursor");
 
-            }
 
             IntPtr hWnd = this.Window.Handle;
 
@@ -472,204 +463,101 @@ namespace _4_Way_Chess
             Resolution.thisT = true;
 
             #endregion
-
-            #region ..
-
-            //if (form.DisplayRectangle.Width < 800)
-            //{
-            //    Resolution.SetVirtualResolution(800, form.DisplayRectangle.Height);
-            //    Resolution.SetResolution(800, form.DisplayRectangle.Height, false);
-
-            //}
-            //if (form.DisplayRectangle.Height < 600)
-            //{
-            //    Resolution.SetVirtualResolution(form.DisplayRectangle.Width, 600);
-            //    Resolution.SetResolution(form.DisplayRectangle.Width, 600, false);
-            //}
-            //else if (form.DisplayRectangle.Height > form.DisplayRectangle.Width - 200)
-            //{
-            //    Resolution.SetVirtualResolution(form.DisplayRectangle.Width, form.DisplayRectangle.Width - 200);
-            //    Resolution.SetResolution(form.DisplayRectangle.Width, form.DisplayRectangle.Width - 200, false);
-            //}
-
-            //testW = form.DisplayRectangle.Width;
-
-            //Resolution.thisT = true;
-
-            //if (Window.ClientBounds.Width < 400)
-            ////{   
-            //if (Window.ClientBounds.Width < 1100)
-            //{
-
-            //    Resolution.SetVirtualResolution(1100, Window.ClientBounds.Height);
-            //    Resolution.SetResolution(1100, Window.ClientBounds.Height, false);
-
-            //}
-            //if(Window.ClientBounds.Height < 600)
-            //{
-            //    Resolution.SetVirtualResolution(Window.ClientBounds.Width, 600 );
-            //    Resolution.SetResolution(Window.ClientBounds.Width, 600, false);
-            //}
-            //else
-            //{
-            //    Resolution.SetVirtualResolution(graphics.GraphicsDevice.Viewport.Width, graphics.GraphicsDevice.Viewport.Height);
-            //    Resolution.SetResolution(graphics.GraphicsDevice.Viewport.Width, graphics.GraphicsDevice.Viewport.Height, false);
-
-            //}
-
-
-
-
-            //    if (keyState.IsKeyDown(Keys.Q))
-            //{
-            //    Resolution.SetVirtualResolution(128, 72);
-            //    Resolution.SetResolution(128, 72, false);
-            //}
-            //if (keyState.IsKeyDown(Keys.W))
-            //{
-            //    Resolution.SetVirtualResolution(1280, 720);
-            //    Resolution.SetResolution(1280, 720, false);
-            //}
-            //if (keyState.IsKeyDown(Keys.Z))
-            //{
-            //    Resolution.SetVirtualResolution(1980, 720);
-            //    Resolution.SetResolution(1280, 720, false);
-            //} 
-            //if (keyState.IsKeyDown(Keys.E))
-            //{
-            //    Resolution.SetVirtualResolution(1920, 1080);
-            //    Resolution.SetResolution(1920, 1080, false);
-            //}
-            //if (keyState.IsKeyDown(Keys.R))
-            //{
-            //    Resolution.SetVirtualResolution(1920, 1080);
-            //    Resolution.SetResolution(1920, 1080, true);
-            //}
-            //if (userClickedTheResolutionChangeButton)
-            //{
-            //    graphics.IsFullScreen = userRequestedFullScreen;
-            //    graphics.PreferredBackBufferHeight = userRequestedHeight;
-            //    graphics.PreferredBackBufferWidth = userRequestedWidth;
-            //    graphics.ApplyChanges();
-            //}
-
-
-            #endregion
-
-            #region Case
-
-            if (menuEnum != MenuState.Game || menuEnum != MenuState.Loading)
-            {
-                Menu.Update(gameTime);
-            }
+            Menu.Update(gameTime);
             switch (menuEnum)
             {
                 case MenuState.Menu:
 
-                    MOptions.Update(gameTime);
-
-                    if (Click() && MOptions.menuOpt[1].Contains(Game1.mousePoint))
+                    if (Click() && MOptions.menuOpt[MOptions.hIndex].Contains(Game1.mousePoint) && MOptions.hIndex < MOptions.Menus.Length)
                     {
-                        menuEnum = MenuState.Private;
+                        Active = MOptions.Menus[MOptions.hIndex];
                     }
-                    if (Click() && MOptions.menuOpt[2].Contains(Game1.mousePoint))
-                    {
-                        menuEnum = MenuState.Lan;
-                    }
-                    if (Click() && MOptions.menuOpt[4].Contains(Game1.mousePoint))
-                    {
-                        menuEnum = MenuState.Options;
-                    }
-                    if (Click() && MOptions.menuOpt[5].Contains(Game1.mousePoint))
-                    {
-                        menuEnum = MenuState.Credits;
-                    }
-                    if (Click() && MOptions.menuOpt[6].Contains(Game1.mousePoint))
-                    {
-                        this.Exit();
-                    }
-                    break;
-                case MenuState.Name:
+                    Active.Update(gameTime);
 
-                    txtBox.Update(gameTime);
-                    break;
-                case MenuState.Loading:
-
-                    loadScrn.Update(gameTime);
-                    break;
-                case MenuState.Game:
-
-                    board.Update(gameTime);
-                    UpdatePawns(gameTime);
-                    inGame_settings.Update(gameTime);
-                    inGame_scoreboard.Update(gameTime);
-                    break;
-                case MenuState.Private:
-
-                    Priv.Update(gameTime);
-
-                    if (Click() && Priv.menuOpt[0].Contains(Game1.mousePoint))
-                    {
-                        menuEnum = MenuState.HostPrivate;
-                    }
-                    if (Click() && Priv.menuOpt[1].Contains(Game1.mousePoint))
-                    {
-                        menuEnum = MenuState.EnterIp;
-                    }
-                    if (Click() && Priv.menuOpt[3].Contains(Game1.mousePoint))
-                    {
-                        menuEnum = MenuState.Menu;
-                    }
-                    break;
-                case MenuState.Lan:
-
-                    LN.Update(gameTime);
-                    if (Click() && LN.menuOpt[3].Contains(Game1.mousePoint))
-                    {
-                        menuEnum = MenuState.Menu;
-                    }
-                    break;
-                case MenuState.Credits:
-
-                    Cred.Update(gameTime);
-                    if (Click() && Cred.menuOpt[9].Contains(Game1.mousePoint))
-                    {
-                        menuEnum = MenuState.Menu;
-                    }
-                    break;
-                case MenuState.Options:
-
-                    Opt.Update(gameTime);
-                    if (Click() && Opt.menuOpt[0].Contains(Game1.mousePoint))
-                    {
-                        menuEnum = MenuState.Menu;
-                    }
-                    break;
-                case MenuState.HostPrivate:
-
-                    Qu.Update(gameTime);
-
-
-                    if (Click() && Qu.menuOpt[0].Contains(Game1.mousePoint))
-                    {
-                    }
-                    if (Click() && Qu.menuOpt[1].Contains(Game1.mousePoint))
-                    {
-                        menuEnum = MenuState.Loading;
-                    }
-                    break;
-                case MenuState.JoinPrivate:
-
-                    Qu.Update(gameTime);
-
-
-
-                    if (Click() && Qu.menuOpt[0].Contains(Game1.mousePoint))
-                    {
-                    }
                     break;
             }
+            #region Case
 
+            /*            if (menuEnum != MenuState.Game || menuEnum != MenuState.Loading)
+                        {
+                            Menu.Update(gameTime);
+                        }
+                        switch (menuEnum)
+                        {
+                            case MenuState.Menu:
+
+                                MOptions.Update(gameTime);
+
+                                if (Click() && MOptions.menuOpt[MOptions.hIndex].Contains(Game1.mousePoint))
+                                {
+                                    menuEnum = (MenuState)MOptions.hIndex;
+                                }
+                                break;
+                            case MenuState.Name:
+
+                                txtBox.Update(gameTime);
+                                break;
+                            case MenuState.Loading:
+
+                                loadScrn.Update(gameTime);
+                                break;
+                            case MenuState.Game:
+
+                                board.Update(gameTime);
+                                UpdatePawns(gameTime);
+                                inGame_settings.Update(gameTime);
+                                inGame_scoreboard.Update(gameTime);
+                                break;
+
+                            case MenuState.Lan:
+
+                                LN.Update(gameTime);
+                                if (Click() && LN.menuOpt[3].Contains(Game1.mousePoint))
+                                {
+                                    menuEnum = MenuState.Menu;
+                                }
+                                break;
+                            case MenuState.Credits:
+
+                                Cred.Update(gameTime);
+                                if (Click() && Cred.menuOpt[9].Contains(Game1.mousePoint))
+                                {
+                                    menuEnum = MenuState.Menu;
+                                }
+                                break;
+                            case MenuState.Options:
+
+                                Opt.Update(gameTime);
+                                if (Click() && Opt.menuOpt[Opt.hIndex].Contains(Game1.mousePoint) && Opt.text[Opt.hIndex] == "Back")
+                                {
+                                    menuEnum = MenuState.Menu;
+                                }
+                                break;
+                            case MenuState.HostPrivate:
+
+                                Qu.Update(gameTime);
+
+
+                                if (Click() && Qu.menuOpt[0].Contains(Game1.mousePoint))
+                                {
+                                }
+                                if (Click() && Qu.menuOpt[1].Contains(Game1.mousePoint))
+                                {
+                                    menuEnum = MenuState.Loading;
+                                }
+                                break;
+                            case MenuState.JoinPrivate:
+
+                                Qu.Update(gameTime);
+
+
+
+                                if (Click() && Qu.menuOpt[0].Contains(Game1.mousePoint))
+                                {
+                                }
+                                break;
+                        }
+            */
             if (playerTurn != 1)
             {
                 Moved1 = false;
@@ -720,15 +608,18 @@ namespace _4_Way_Chess
 
             MouseButtonReset();
 
-            // exit game if escape or Back is pressed
-            if (keyState.IsKeyDown(Keys.Escape) || GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-            { this.Exit(); }
-            _previousMouseState1 = _currentMouseState1;
 
+
+            if (keyState.IsKeyDown(Keys.Escape) 
+                || GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed 
+                || (Click() && MOptions.menuOpt[MOptions.hIndex].Contains(Game1.mousePoint) && MOptions.text[MOptions.hIndex] == "Quit"))
+            { this.Exit(); }
+
+
+            _previousMouseState1 = _currentMouseState1;
+   
             Resolution.Update(gameTime);
             base.Update(gameTime);
-
-
         }
 
         protected override void Draw(GameTime gameTime)
@@ -738,6 +629,12 @@ namespace _4_Way_Chess
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null,
                 Resolution.getTransformationMatrix());
 
+            graphics.GraphicsDevice.Clear(BgColor);
+            Menu.Draw(spriteBatch);
+            Active.Draw(spriteBatch);
+
+
+            /*
             if (menuEnum != MenuState.Game && menuEnum != MenuState.Loading)
             {
                 graphics.GraphicsDevice.Clear(BgColor);
@@ -748,10 +645,6 @@ namespace _4_Way_Chess
                     case MenuState.Menu:
 
                         MOptions.Draw(spriteBatch);
-                        break;
-                    case MenuState.Private:
-
-                        Priv.Draw(spriteBatch);
                         break;
                     case MenuState.Lan:
 
@@ -849,35 +742,7 @@ namespace _4_Way_Chess
                     break;
             }
 
-            #region 3D
-
-            //// Copy any parent transforms.
-            //Matrix[] transforms = new Matrix[TestModel.Bones.Count];
-            //TestModel.CopyAbsoluteBoneTransformsTo(transforms);
-
-            //// Draw the model. A model can have multiple meshes, so loop.
-            //foreach (ModelMesh mesh in TestModel.Meshes)
-            //{
-            //    // This is where the mesh orientation is set, as well 
-            //    // as our camera and projection.
-            //    foreach (BasicEffect effect in mesh.Effects)
-            //    {
-            //        effect.EnableDefaultLighting();
-            //        effect.World = transforms[mesh.ParentBone.Index] *
-            //            Matrix.CreateRotationY(modelRotation)
-            //            * Matrix.CreateTranslation(modelPosition);
-            //        effect.View = Matrix.CreateLookAt(cameraPosition,
-            //            Vector3.Zero, Vector3.Up);
-            //        effect.Projection = Matrix.CreatePerspectiveFieldOfView(
-            //            MathHelper.ToRadians(45.0f), aspectRatio,
-            //            1.0f, 10000.0f);
-            //    }
-            //    // Draw the mesh, using the effects set above.
-            //    mesh.Draw();
-            //}
-
-            #endregion
-
+            */
             if (IsMouseInsideWindow())
             {
                 spriteBatch.Draw(cursorHand, new Vector2(Resolution.MousePosition.X, Resolution.MousePosition.Y), Color.White);
@@ -887,13 +752,13 @@ namespace _4_Way_Chess
             spriteBatch.End();
 
             spriteBatch.Begin();
-
+            /*
             if (menuEnum == MenuState.Game)
             {
                 inGame_settings.Draw(spriteBatch);
                 inGame_scoreboard.Draw(spriteBatch);
             }
-
+            */
             spriteBatch.End();
 
 

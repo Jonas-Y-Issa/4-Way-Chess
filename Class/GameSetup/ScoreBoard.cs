@@ -9,9 +9,10 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Text;
 using System.Collections;
+using _4_Way_Chess;
 
 
-namespace _4_Way_Chess
+namespace Class.GameSetup
 {
 
     public class ScoreBoard

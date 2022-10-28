@@ -9,9 +9,10 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Text;
 using System.Collections;
+using _4_Way_Chess;
 
 
-namespace _4_Way_Chess
+namespace Class.GameSetup
 {
 
     sealed class LoadScreen
@@ -23,7 +24,7 @@ namespace _4_Way_Chess
         Vector2 LoadingPosition;
         SpriteFont font;
 
-   
+
 
         public LoadScreen(ContentManager contentManager)
         {
@@ -33,9 +34,9 @@ namespace _4_Way_Chess
 
         public void Update(GameTime gameTime)
         {
-            BackgroundBox = new Rectangle((int)(((Game1.testW * Resolution.ratio) / 2) - (BackgroundBox.Width / 2)), (int)(((Game1.testH * Resolution.ratio) / 2) - (BackgroundBox.Height / 2) - 100), 500, 500);
+            BackgroundBox = new Rectangle((int)(Game1.testW * Resolution.ratio / 2 - BackgroundBox.Width / 2), (int)(Game1.testH * Resolution.ratio / 2 - BackgroundBox.Height / 2 - 100), 500, 500);
 
-            LoadingPosition = new Vector2((BackgroundBox.X + (BackgroundBox.Width / 2)) - (font.MeasureString("Loading Game").X / 2), (BackgroundBox.Y + (BackgroundBox.Height / 2)) - font.MeasureString("Loading Game").Y + 14);
+            LoadingPosition = new Vector2(BackgroundBox.X + BackgroundBox.Width / 2 - font.MeasureString("Loading Game").X / 2, BackgroundBox.Y + BackgroundBox.Height / 2 - font.MeasureString("Loading Game").Y + 14);
 
 
             dotTimer += 1;
@@ -59,7 +60,7 @@ namespace _4_Way_Chess
             else if (dotTimer >= 280)
             {
                 dotTimer = 0;
-                Game1.menuEnum = Game1.MenuState.Game;
+                //Game1.menuEnum = Game1.MenuState.Game;
             }
 
         }
@@ -69,7 +70,7 @@ namespace _4_Way_Chess
             spriteBatch.DrawString(font, LoadMsg, LoadingPosition, Color.White);
 
             spriteBatch.Draw(Background, BackgroundBox, Color.White);
-      
+
         }
 
         public void LoadContent(ContentManager contentManager)

@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Text;
 
-namespace _4_Way_Chess
+namespace Class.GameSetup
 {
     class Board
     {
@@ -22,7 +22,7 @@ namespace _4_Way_Chess
         public static Rectangle[] WhiteBox = new Rectangle[160];
         int[] i = new int[8];
         int[] ii = new int[14];
-       
+
         public Board(ContentManager contentManager)
         {
 
@@ -44,7 +44,7 @@ namespace _4_Way_Chess
 
             foreach (int o in i)
             {
-                WhiteBox[o] = new Rectangle(M + 230 + o * 55,T + 45, 55, 55);
+                WhiteBox[o] = new Rectangle(M + 230 + o * 55, T + 45, 55, 55);
             }
             foreach (int o in i)
             {
@@ -112,7 +112,7 @@ namespace _4_Way_Chess
             {
                 int r = 152 + o;
                 WhiteBox[r] = new Rectangle(M + 230 + o * 55, T + 760, 55, 55);
-            } 
+            }
 
         }
 
@@ -124,7 +124,7 @@ namespace _4_Way_Chess
         {
 
             spriteBatch.Draw(BoardSprite, BoardRect, Color.White);
-         
+
         }
 
         public void LoadContent(ContentManager contentManager)

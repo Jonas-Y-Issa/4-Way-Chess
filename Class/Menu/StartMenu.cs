@@ -46,14 +46,14 @@ namespace _4_Way_Chess
             HeaderBox = new Rectangle((int)((Game1.testW * Resolution.ratio) / 2) - (int)((HeaderBox.Width / 2)), 15, Header.Width / 3, Header.Height / 3);
             Wallpaper = new Rectangle((int)(-(WallpaperTexture.Width * 1.5)+ (Game1.testW * Resolution.ratio)+t), (int)(-(WallpaperTexture.Height * 1.5) + (Game1.testH * Resolution.ratio) + g), (int)(WallpaperTexture.Width * 1.5), (int)(WallpaperTexture.Height * 1.5));
 
-            if (Game1.menuEnum == Game1.MenuState.HostPrivate)
+            /*if (Game1.menuEnum == Game1.MenuState.HostPrivate)
             {
                 tint = Color.Yellow;
             }
             else
             {
                 tint = Color.White;
-            }
+            }*/
             g += 2;
             t += 2;
             currPos = (Math.Sqrt(Math.Pow(g, 2) + Math.Pow(t, 2)));

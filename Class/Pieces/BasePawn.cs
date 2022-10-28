@@ -9,8 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Text;
 using System.Collections;
-
-
+using Class.GameSetup;
 
 namespace _4_Way_Chess
 {
